@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haven Essence Co. - Find Your Signature Scent</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="assets/logo.jpg" alt="Haven Essence Co." class="nav-logo">
+            <h1>Haven Essence Co.</h1>
+        </div>
+        <nav>
+            <a href="https://www.facebook.com/people/Haven-Essence-Co/61572343884204/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center;" aria-label="Haven Essence Co. Facebook" title="Visit our Facebook">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/>
+                </svg>
+            </a>
+            <a href="#mens">Men's</a>
+            <a href="#womens">Women's</a>
+            <div class="cart-icon" id="cartBtn" style="display: flex; align-items: center; gap: 4px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    style="vertical-align: middle;">
+                    <path d="M5 8L3.5 21H20.5L19 8H5Z" stroke="currentColor" stroke-width="2.5"
+                        stroke-linejoin="round" />
+                    <path d="M8.5 9.5V5.5C8.5 3.567 10.067 2 12 2C13.933 2 15.5 3.567 15.5 5.5V9.5"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                    <circle cx="8.5" cy="9.5" r="2" fill="currentColor" />
+                    <circle cx="15.5" cy="9.5" r="2" fill="currentColor" />
+                </svg>
+                <span id="cartCount">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- HOME VIEW -->
+        <div id="home-view">
+            <section class="hero">
+                <div class="hero-layout">
+                    <div class="hero-image-wrapper">
+                        <img src="assets/logo.jpg" alt="Haven Essence Co." class="hero-logo">
+                    </div>
+                    <div class="hero-text-wrapper">
+                        <h2 class="headline" style="font-size: 3rem; margin-bottom: 25px; line-height: 1.2;">Welcome to Haven Essence Co.!</h2>
+                        <p class="welcome-text">At Haven Essence Co., we create fragrances that reflect elegance, confidence, and individuality. Inspired by iconic luxury scents, each perfume is carefully blended to deliver a refined and lasting experience.</p>
+                        <p class="welcome-text">We believe that everyone deserves to feel luxurious every day. That’s why our scents are designed to be both high-quality and affordable perfect for expressing your essence in every moment.</p>
+                        <button class="btn-discover"
+                            onclick="document.getElementById('mens').scrollIntoView({behavior: 'smooth'})">
+                            Discover the Collection
+                            <svg class="arrow-down" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mens" class="collection mens-collection">
+                <h3 class="section-title">Men's Collection</h3>
+                <div class="product-grid" id="mens-grid"></div>
+            </section>
+
+            <section id="womens" class="collection womens-collection">
+                <h3 class="section-title">Women's Collection</h3>
+                <div class="product-grid" id="womens-grid"></div>
+            </section>
+        </div> <!-- End home-view -->
+
+        <!-- FULL PAGE CART VIEW -->
+        <div id="cart-view" style="display: none; padding: 60px 5%; background: #fafaf8; min-height: 80vh;">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <a href="javascript:void(0)" onclick="closeCart()" class="continue-shopping">&larr; Continue
+                    Shopping</a>
+                <h2 class="cart-page-title">Shopping Cart</h2>
+
+                <div id="cart-empty-state" style="display: none; text-align: center; margin-top: 100px;">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 20px;">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <p style="color: #888; font-size: 1.1rem; margin-bottom: 20px;">Your cart is empty</p>
+                    <button class="btn btn-outline" onclick="closeCart()" style="padding: 10px 24px;">Browse
+                        Products</button>
+                </div>
+
+                <div id="cart-filled-state" class="cart-layout" style="display: none;">
+                    <div style="flex: 1;">
+                        <div class="order-summary" id="order-summary-page"></div>
+                    </div>
+                    <div class="checkout-sidebar">
+                        <h3 style="margin-bottom: 15px;">Order Details</h3>
+                        <div class="customer-info" style="margin-bottom: 15px;">
+                            <input type="text" id="customer-name" placeholder="Full Name"
+                                style="width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #ddd; font-family: 'Inter', sans-serif;"
+                                required>
+                            <textarea id="customer-address" placeholder="Delivery Address"
+                                style="width: 100%; padding: 12px; border-radius: 4px; border: 1px solid #ddd; font-family: 'Inter', sans-serif;"
+                                rows="3" required></textarea>
+                        </div>
+                        <div class="delivery-options">
+                            <h4 style="margin-bottom: 10px; font-size: 0.95rem;">Delivery Method</h4>
+                            <label><input type="radio" name="delivery" value="same-day" checked> Same Day Delivery <span
+                                    class="badge">Fastest</span></label>
+                        </div>
+                        <div class="payment-options">
+                            <h4 style="margin-bottom: 10px; font-size: 0.95rem;">Payment Method</h4>
+                            <label><input type="radio" name="payment" value="gcash" checked onchange="toggleGcashDetails()"> GCash</label>
+                            <label><input type="radio" name="payment" value="cod" onchange="toggleGcashDetails()"> Cash on Delivery</label>
+                        </div>
+                        <div id="gcash-details" style="display: block; margin-bottom: 15px; margin-top: 15px; padding: 15px; background: #fdfaf5; border: 1px solid #e1e1e1; border-radius: 8px; text-align: center;">
+                            <p style="font-size: 0.9rem; margin-bottom: 10px; color: #444;">Please scan this InstaPay QR to pay via GCash:</p>
+                            <img src="assets/QR%20code.jpg" alt="GCash InstaPay QR Code" style="width: 180px; height: 180px; object-fit: contain; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; background: #fff;">
+                            <input type="text" id="gcash-phone" placeholder="Enter your GCash Phone Number" style="width: 100%; padding: 12px; border-radius: 4px; border: 1px solid #c38c2f; font-family: 'Inter', sans-serif;">
+                            <small style="display: block; margin-top: 8px; color: #777; font-size: 0.8rem;">We need this to verify your payment!</small>
+                        </div>
+                        <button class="btn btn-primary" id="confirm-order"
+                            style="width: 100%; margin-top: 20px; font-size: 1.1rem; padding: 15px;">Confirm &
+                            Pay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FULL PAGE PRODUCT VIEW -->
+        <div id="product-view" style="display: none; padding: 40px 5%; background: #fafaf8; min-height: 80vh;">
+            <div style="max-width: 1100px; margin: 0 auto; padding-top: 20px;">
+                <a href="javascript:void(0)" onclick="closeProductPage()" class="continue-shopping"
+                    style="margin-bottom: 30px; display: inline-block;">&larr; Back to Shop</a>
+
+                <div class="product-page-layout">
+                    <div class="product-page-image" id="pv-image-container">
+                        <img src="" alt="" id="pv-image">
+                    </div>
+                    <div class="product-page-details">
+                        <div class="pv-tags">
+                            <span class="pv-tag-collection" id="pv-tag-collection">For Women</span>
+                            <span class="pv-tag-inspired" id="pv-tag-inspired">Inspired by...</span>
+                        </div>
+                        <h2 class="pv-title" id="pv-title">Product Name</h2>
+                        <div class="pv-price" id="pv-price">₱599</div>
+
+                        <p class="pv-desc" id="pv-desc">Description goes here...</p>
+
+                        <div class="pv-info-box">
+                            <h6>SIZE</h6>
+                            <p id="pv-size">50ml - perfectly sized for daily use</p>
+                        </div>
+
+                        <div class="pv-info-box">
+                            <h6>WHAT MAKES IT SPECIAL</h6>
+                            <p id="pv-uniqueness">Unique details...</p>
+                        </div>
+
+                        <div class="pv-delivery-badge">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 8px;">
+                                <path
+                                    d="M5 19C4.44772 19 4 18.5523 4 18V5C4 4.44772 4.44772 4 5 4H15C15.5523 4 16 4.44772 16 5V18C16 18.5523 15.5523 19 15 19H5Z"
+                                    stroke="#b28741" stroke-width="2" stroke-linecap="round" />
+                                <path d="M16 8H20C20.5523 8 21 8.44772 21 9V18C21 18.5523 20.5523 19 20 19H16V8Z"
+                                    stroke="#b28741" stroke-width="2" stroke-linecap="round" />
+                                <path d="M4 18H5M15 18H16M16 18H20M20 18H21" stroke="#b28741" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                            <span>Same-Day Delivery Available</span>
+                        </div>
+
+                        <div class="pv-actions">
+                            <div class="pv-qty">
+                                <span>Qty:</span>
+                                <div class="qty-selector">
+                                    <button class="qty-btn" onclick="updatePvQty(-1)">−</button>
+                                    <span id="pv-qty-val">1</span>
+                                    <button class="qty-btn" onclick="updatePvQty(1)">+</button>
+                                </div>
+                            </div>
+                            <div class="pv-buttons">
+                                <button class="btn btn-outline" id="pv-add-cart" onclick="addToCartPv()"
+                                    style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 8L3.5 21H20.5L19 8H5Z" stroke="currentColor" stroke-width="2.5"
+                                            stroke-linejoin="round" />
+                                        <path d="M8.5 9.5V5.5C8.5 3.567 10.067 2 12 2C13.933 2 15.5 3.567 15.5 5.5V9.5"
+                                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                                    </svg>
+                                    Add to Cart
+                                </button>
+                                <button class="btn btn-gold" id="pv-buy-now" onclick="buyNowPv()" style="flex: 1;">Buy
+                                    Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pv-reviews-section">
+                    <h3 class="reviews-title">Reviews (<span id="pv-reviews-count">0</span>)</h3>
+
+                    <div class="review-form-container">
+                        <h4 style="margin-bottom: 20px; font-size: 1.1rem; font-family: 'Times New Roman', serif;">Write
+                            a Review</h4>
+                        <div class="star-rating-input">
+                            <span class="rating-label">Your Rating</span>
+                            <div class="stars-interactive" id="pv-stars">
+                                <span class="star active" data-val="1">⭐</span>
+                                <span class="star" data-val="2">☆</span>
+                                <span class="star" data-val="3">☆</span>
+                                <span class="star" data-val="4">☆</span>
+                                <span class="star" data-val="5">☆</span>
+                            </div>
+                        </div>
+                        <input type="text" id="pv-reviewer-name" placeholder="Your name (optional)"
+                            class="review-input">
+                        <textarea id="pv-review-text" placeholder="Share your thoughts about this fragrance..."
+                            class="review-textarea" rows="4"></textarea>
+                        <button class="btn btn-gold" id="pv-submit-review" onclick="submitReviewPv()">Submit
+                            Review</button>
+                    </div>
+
+                    <div id="pv-reviews-list">
+                        <!-- Dynamic reviews here -->
+                        <p class="empty-reviews">No reviews yet. Be the first to share your experience!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <hr class="footer-divider">
+            <h2 class="footer-logo">Haven Essence Co.</h2>
+            <p class="footer-tagline">Luxury fragrances inspired by elegance, beauty, and confidence.</p>
+            <p class="footer-credit">CAVITE STATE UNIVERSITY - CCAT CAMPUS &copy; 2026</p>
+        </div>
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
