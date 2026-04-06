@@ -187,6 +187,12 @@ nav a:hover {
     font-style: normal;
 }
 
+.headline-welcome {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
 .tagline {
     font-family: "Times New Roman", Times, serif;
     font-size: 1.5rem;
@@ -900,6 +906,85 @@ nav a:hover {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Mobile Responsive Polish */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px;
+    }
+    
+    .logo h1 {
+        font-size: 22px;
+    }
+    
+    nav {
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    
+    .hero {
+        padding: 30px 15px;
+    }
+    
+    .hero-layout {
+        gap: 20px;
+    }
+    
+    .headline {
+        font-size: 2.2rem;
+    }
+    
+    .headline-welcome {
+        font-size: 2rem;
+    }
+    
+    .welcome-text {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
+    
+    .btn-discover {
+        font-size: 1.1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    
+    .product-grid {
+        gap: 20px;
+    }
+    
+    .product-card {
+        width: 100%;
+        max-width: 340px;
+    }
+    
+    .product-image-container {
+        height: 240px;
+    }
+    
+    .cart-page-title {
+        font-size: 2rem;
+    }
+    
+    .footer-logo {
+        font-size: 1.3rem;
+    }
+    
+    .pv-title {
+        font-size: 2rem;
+    }
+    
+    .pv-price {
+        font-size: 1.5rem;
     }
 }
 
