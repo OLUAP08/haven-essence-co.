@@ -389,8 +389,10 @@ function setupEventListeners() {
 
     document.getElementById('confirm-order').onclick = async () => {
         const nameInput = document.getElementById('customer-name');
+        const emailInput = document.getElementById('customer-email');
         const addressInput = document.getElementById('customer-address');
         const name = nameInput ? nameInput.value.trim() : 'Unknown';
+        const email = emailInput ? emailInput.value.trim() : '';
         const address = addressInput ? addressInput.value.trim() : 'Unknown';
 
         const payment = document.querySelector('input[name="payment"]:checked').value;
@@ -398,8 +400,8 @@ function setupEventListeners() {
         const gcashPhoneInput = document.getElementById('gcash-phone');
         const gcashPhone = gcashPhoneInput ? gcashPhoneInput.value.trim() : '';
 
-        if (!name || !address) {
-            showToast('Please enter your Name and Delivery Address.');
+        if (!name || !email || !address) {
+            showToast('Please enter your Name, Email Address, and Delivery Address.');
             return;
         }
 
@@ -422,6 +424,7 @@ function setupEventListeners() {
         const orderPayload = {
             date: new Date().toLocaleString(),
             name: name,
+            email: email,
             address: address,
             productName: productNames,
             quantity: totalItems,
@@ -443,10 +446,15 @@ function setupEventListeners() {
 
             // As long as no error is thrown, we assume success
             showToast(`Order confirmed, ${name}! Your signature scent is on the way!`);
+            
+            // Show email modal
+            showEmailModal(name, email, cart);
+            
             cart = [];
             updateCartCount();
             closeCart();
             if (nameInput) nameInput.value = '';
+            if (emailInput) emailInput.value = '';
             if (addressInput) addressInput.value = '';
         } catch (error) {
             console.error('Error saving order:', error);
@@ -456,6 +464,45 @@ function setupEventListeners() {
             confirmBtn.textContent = 'Confirm & Pay';
         }
     };
+}
+
+function showEmailModal(name, email, orderedItems) {
+    const modal = document.getElementById('email-modal');
+    if (!modal) return;
+    
+    document.getElementById('email-to-display').textContent = email;
+    document.getElementById('email-body-text').textContent = `Thank you ${name} your perfume will be delivered around 2 - 3 days. We can't wait for you to enjoy your experience with our product.`;
+    
+    const uniqueItemsImageHtml = [];
+    const seenIds = new Set();
+    orderedItems.forEach(item => {
+        if (!seenIds.has(item.id)) {
+            seenIds.add(item.id);
+            uniqueItemsImageHtml.push(`<img src="${item.image}" alt="${item.name}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 10px rgba(0,0,0,0.08);" title="${item.name}">`);
+        }
+    });
+    
+    document.getElementById('email-product-images').innerHTML = uniqueItemsImageHtml.join('');
+    
+    modal.style.display = 'flex';
+    // Small delay to allow display flex to apply before opacity transition
+    setTimeout(() => {
+        modal.style.opacity = '1';
+        const modalContent = document.getElementById('email-modal-content');
+        if(modalContent) modalContent.style.transform = 'translateY(0)';
+    }, 10);
+}
+
+window.closeEmailModal = function() {
+    const modal = document.getElementById('email-modal');
+    if (!modal) return;
+    modal.style.opacity = '0';
+    const modalContent = document.getElementById('email-modal-content');
+    if(modalContent) modalContent.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+        modal.style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 300);
 }
 
 init();
